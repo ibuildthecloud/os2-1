@@ -1,0 +1,39 @@
+packages:
+  uefi:
+  - live/grub2-efi-image
+  isoimage:
+  - live/grub2
+  - live/grub2-efi-image
+
+xpackages:
+  uefi:
+  - live/systemd-boot
+  - live/boot
+  isoimage:
+  - live/syslinux
+  - live/boot
+
+boot_file: "boot/x86_64/loader/eltorito.img"
+boot_catalog: "boot/x86_64/boot.catalog"
+isohybrid_mbr: "boot/x86_64/loader/boot_hybrid.img"
+
+initramfs:
+  kernel_file: "vmlinuz"
+  rootfs_file: "initrd"
+
+overlay:
+  rootfs: /iso/overlay
+
+image_prefix: "output"
+label: "COS_LIVE"
+
+squashfs_options:
+  compression: gzip
+
+luet:
+  repositories:
+  - name: "cos-toolkit-green"
+    type: "docker"
+    enable: true
+    urls:
+    - "quay.io/costoolkit/releases-green"
